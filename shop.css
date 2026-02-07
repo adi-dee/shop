@@ -1,0 +1,382 @@
+:root{
+  --bg:#0b0b0c; --card:#121214; --txt:#f2f2f4; --muted:#b7b7c2; --line:#24242b;
+}
+*{box-sizing:border-box}
+html,body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--txt)}
+a{color:var(--txt);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1100px;margin:0 auto;padding:22px}
+.top{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:10px 0 18px}
+.brand{font-weight:700;letter-spacing:.2px}
+.nav{display:flex;gap:14px;flex-wrap:wrap}
+.nav a{color:var(--muted)}
+.nav a.active{color:var(--txt)}
+.hero h1{margin:0 0 6px;font-size:28px}
+.sub{margin:0 0 14px;color:var(--muted)}
+.notice{border:1px solid var(--line);background:rgba(255,255,255,.03);padding:12px 14px;border-radius:14px;margin-bottom:14px}
+.notice .muted{color:var(--muted);font-size:13px;margin-top:4px}
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:14px 0}
+select,input{background:var(--card);border:1px solid var(--line);color:var(--txt);padding:10px 12px;border-radius:12px}
+input{flex:1;min-width:220px}
+.badge{border:1px solid var(--line);padding:8px 10px;border-radius:999px;color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+.card{grid-column:span 12;border:1px solid var(--line);background:var(--card);border-radius:18px;overflow:hidden}
+@media(min-width:720px){.card{grid-column:span 6}}
+@media(min-width:1000px){.card{grid-column:span 4}}
+.img{width:100%;aspect-ratio:4/3;object-fit:cover;background:#0f0f12}
+.body{padding:14px}
+.row{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+h3{margin:0;font-size:16px}
+.price{color:var(--muted);white-space:nowrap}
+.desc{color:var(--muted);font-size:13px;margin:8px 0 12px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn{border:1px solid var(--line);padding:10px 12px;border-radius:12px;color:var(--txt);background:rgba(255,255,255,.06)}
+.btn.primary{background:var(--txt);color:var(--bg);border-color:transparent}
+.tag{color:var(--muted);font-size:12px;border:1px solid var(--line);padding:6px 10px;border-radius:999px}
+.foot{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+.empty{color:var(--muted);padding:16px;border:1px dashed var(--line);border-radius:14px}
+
+/* ---------- MODAL (scoped + bulletproof) ---------- */
+#backdrop.modal-backdrop{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.62);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  z-index: 99999;
+}
+
+#backdrop[hidden]{ display:none !important; }
+
+#backdrop .modal{
+  width: min(980px, 96vw);
+  max-height: min(78vh, 900px);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(18,18,20,.98);
+  border-radius: 20px;
+  position: relative;
+  box-shadow: 0 20px 70px rgba(0,0,0,.6);
+}
+
+#backdrop .modal-close{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  border-radius: 12px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+#backdrop .modal-grid{
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 100%;
+}
+
+@media (min-width: 860px){
+  #backdrop .modal-grid{ grid-template-columns: 1.1fr .9fr; }
+}
+
+#backdrop .modal-img{
+  width: 100%;
+  height: 100%;
+  max-height: 78vh;
+  object-fit: contain;
+  background: #0f0f12;
+  display:block;
+}
+
+#backdrop .modal-body{
+  padding: 16px;
+  overflow: auto;
+}
+
+#backdrop .modal-title{
+  margin: 0 0 6px;
+  font-size: 20px;
+}
+
+#backdrop .modal-short{
+  margin: 0 0 12px;
+  color: rgba(255,255,255,.72);
+}
+
+#backdrop .modal-bullets{
+  margin: 12px 0 14px;
+  color: rgba(255,255,255,.72);
+  font-size: 13px;
+}
+
+#backdrop .bullet{ margin: 6px 0; }
+
+#backdrop .modal-buy{ margin: 10px 0 14px; }
+
+#backdrop .small{ font-size: 12px; }
+#backdrop .muted{ color: rgba(255,255,255,.72); }
+ /* Modal text/button spacing fixes */
+#backdrop .modal-short { margin-bottom: 14px; }
+#backdrop .modal-bullets { margin: 0 0 16px; line-height: 1.35; }
+
+#backdrop .modal-buy { margin: 14px 0 0; }
+#backdrop .modal-buy .btn { display: inline-flex; align-items: center; gap: 8px; }
+
+#backdrop .btn { text-decoration: none; }
+#backdrop .small { margin-top: 6px; display:block; line-height: 1.35; }
+
+/* Make buttons full width on small screens so they don't sit on text */
+@media (max-width: 520px){
+  #backdrop .modal-buy .btn { width: 100%; justify-content: center; }
+}
+
+
+#backdrop .thumbs{
+  display:flex;
+  gap:10px;
+  padding:10px;
+  overflow:auto;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+#backdrop .thumb{
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:10px;
+  padding:0;
+  background:transparent;
+  cursor:pointer;
+  flex: 0 0 auto;
+}
+#backdrop .thumb img{
+  width:64px;
+  height:64px;
+  object-fit:cover;
+  border-radius:10px;
+  display:block;
+}
+#backdrop .thumb.active{
+  outline:2px solid rgba(255,255,255,.35);
+}
+
+
+/* ===== Modal ===== */
+.backdrop{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.65);
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  z-index: 9999;
+}
+/* --- keep modal height stable --- */
+.modal{
+  width: min(1100px, 100%);
+  height: min(86vh, 900px);     /* IMPORTANT: fixed height, not max-height */
+  overflow: hidden;
+}
+
+/* left side: image area + thumbs */
+.modal-media{
+  border-right: 1px solid rgba(255,255,255,.08);
+  display: grid;
+  grid-template-rows: 1fr auto;  /* image area takes remaining space, thumbs fixed */
+  height: 100%;
+  min-height: 0;                /* IMPORTANT for grid overflow */
+}
+
+/* image container must NOT resize based on image */
+.zoom-wrap{
+  position: relative;
+  height: 100%;
+  min-height: 0;                /* IMPORTANT */
+  padding: 18px;
+  display: grid;
+  place-items: center;
+  background: rgba(255,255,255,.02);
+  overflow: hidden;             /* keeps lens + image inside */
+}
+
+/* image always fits inside the fixed area */
+.modal-img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.02);
+  display: block;
+}
+
+/* thumbs row always visible */
+.thumbs{
+  flex: 0 0 auto;
+  padding: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-top: 1px solid rgba(255,255,255,.08);
+  background: rgba(0,0,0,.12);
+}
+
+/* right side scrolls if text is long */
+.modal-info{
+  height: 100%;
+  overflow: auto;
+  padding: 22px;
+  min-height: 0;
+}
+
+/* mobile: stack but still keep stable height */
+
+.modal-title{
+  margin: 0 0 6px;
+  font-size: 34px;
+}
+
+.modal-short{
+  margin: 0 0 14px;
+  color: rgba(255,255,255,.75);
+}
+
+.meta{
+  display: grid;
+  gap: 6px;
+  margin-bottom: 14px;
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.details{
+  display: grid;
+  gap: 8px;
+  margin: 14px 0 18px;
+  color: rgba(255,255,255,.82);
+}
+
+.details .bullet{
+  display: flex;
+  gap: 10px;
+}
+.details .dot{
+  opacity: .7;
+}
+
+.buy-row{
+  display: grid;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 14px;
+  border-radius: 14px;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.92);
+  font-weight: 600;
+}
+
+.btn-primary{
+  background: rgba(255,255,255,.92);
+  color: #111;
+  border: 1px solid rgba(255,255,255,.92);
+}
+
+.muted{ color: rgba(255,255,255,.62); }
+.small{ font-size: 13px; }
+
+/* ===== Gallery thumbs ===== */
+.thumbs{
+  display: flex;
+  gap: 10px;
+  padding: 12px;
+  overflow: auto;
+  border-top: 1px solid rgba(255,255,255,.08);
+  background: rgba(0,0,0,.12);
+}
+
+.thumb{
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+.thumb img{
+  width: 68px;
+  height: 68px;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+}
+.thumb.active{
+  outline: 2px solid rgba(255,255,255,.35);
+}
+
+/* ===== Zoom effect ===== */
+.zoom-wrap{
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  overflow: hidden;        /* IMPORTANT */
+  background: rgba(255,255,255,.02);
+}
+
+.modal-img{
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;     /* THIS is the key */
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.02);
+  display: block;
+}
+
+/* The magnifier lens */
+.lens{
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 999px;
+  border: 2px solid rgba(255,255,255,.35);
+  box-shadow: 0 12px 30px rgba(0,0,0,.45);
+  pointer-events: none;
+  display: none;
+  background-repeat: no-repeat;
+  background-size: 500%;
+  background-color: rgba(0,0,0,.2);
+}
+.zoom-wrap:hover .lens{ display: block; }
+
+.lens { display: none; }
+.zoom-wrap:hover .lens { display: block; }
+
+
+.modal-img{
+  max-width: 100%;
+  max-height: calc(86vh - 140px);
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.02);
+}
+
+
+@media (max-width: 900px){
+  .modal-grid{ grid-template-columns: 1fr; height: 100%; }
+  .modal-media{ border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); }
+  .modal-media{ grid-template-rows: 1fr auto; }
+}

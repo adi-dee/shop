@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shop</title>
+  <link rel="stylesheet" href="./shop.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a class="brand" href="../">Adi</a>
+      <nav class="nav">
+        <a href="../">Home</a>
+        <a class="active" href="./">Shop</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h1>Shop</h1>
+      <p class="sub">Preview each piece, then choose digital or print. Secure checkout via Stripe.</p>
+
+      <div class="notice">
+        <div><strong>Shipping (prints):</strong> Germany €3 · EU €6 · USA/International €10</div>
+        <div class="muted">Other countries: DM me on Instagram.</div>
+        <div class="muted">Digital downloads: no shipping.</div>
+      </div>
+    </section>
+
+    <main id="grid" class="grid" aria-live="polite"></main>
+
+    <footer class="foot">
+      <div>„Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.“</div>
+    </footer>
+  </div>
+
+  <!-- Modal / Backdrop -->
+<div id="backdrop" class="backdrop" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <button id="mClose" class="modal-close" type="button" aria-label="Close">×</button>
+
+    <div class="modal-grid">
+      <!-- Left: image + thumbs -->
+      <div class="modal-media">
+       <div id="zoomWrap" class="zoom-wrap">
+        <img id="mImg" class="modal-img" alt="" />
+        <div id="lens" class="lens" aria-hidden="true"></div>
+      </div>
+        <div id="thumbs" class="thumbs" aria-label="Gallery thumbnails"></div>
+      </div>
+
+      <!-- Right: info -->
+      <div class="modal-info">
+        <h2 id="mTitle" class="modal-title"></h2>
+        <p id="mShort" class="modal-short"></p>
+
+        <div class="meta">
+          <div><strong>Size:</strong> <span id="mSize"></span></div>
+          <div class="muted" id="mFormat"></div>
+        </div>
+
+        <div id="mDetails" class="details"></div>
+
+        <div class="buy-row">
+          <a id="buyPrint" class="btn btn-primary" href="#" target="_blank" rel="noopener">Buy Print</a>
+          <div id="mPrintMeta" class="muted small"></div>
+        </div>
+
+        <div class="muted small">
+          Secure checkout via Stripe. Prints ship from Germany. Unframed.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="./products.js"></script>
+<script>
+  const items = window.PRODUCTS || [];
+  const grid = document.getElementById("grid");
+
+  // Render cards (whole card clickable)
+  grid.innerHTML = items.map(p => {
+    const cover = (p.images && p.images.length) ? p.images[0] : "";
+    const price = p.print?.price || "";
+    return `
+      <article class="card card-click" role="button" tabindex="0" data-open="${p.id}">
+        <img class="img" src="${cover}" alt="${p.title}" loading="lazy" />
+        <div class="body">
+          <div class="row">
+            <h3>${p.title}</h3>
+            <div class="price">${price}</div>
+          </div>
+          <p class="desc">${p.short || ""}</p>
+          <div class="actions">
+            <span class="btn" aria-hidden="true">View</span>
+            <span class="tag">Print</span>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
+
+  // ===== Modal elements =====
+  const backdrop = document.getElementById("backdrop");
+  const mClose = document.getElementById("mClose");
+  const mImg = document.getElementById("mImg");
+  const zoomWrap = document.getElementById("zoomWrap");
+  const thumbs = document.getElementById("thumbs");
+
+  const mTitle = document.getElementById("mTitle");
+  const mShort = document.getElementById("mShort");
+  const mSize = document.getElementById("mSize");
+  const mFormat = document.getElementById("mFormat");
+  const mDetails = document.getElementById("mDetails");
+
+    const buyPrint = document.getElementById("buyPrint");
+    const mPrintMeta = document.getElementById("mPrintMeta");
+    const lens = document.getElementById("lens"); 
+
+  let activeProduct = null;
+
+  function lockScroll(lock){
+    document.documentElement.style.overflow = lock ? "hidden" : "";
+    document.body.style.overflow = lock ? "hidden" : "";
+  }
+
+ function setMainImage(src, altText){
+  mImg.src = src;
+  mImg.alt = altText || "";
+  lens.style.backgroundImage = `url('${src}')`;
+}
+
+  function renderThumbs(images){
+    thumbs.innerHTML = images.map((src, i) => `
+      <button class="thumb ${i===0 ? "active" : ""}" type="button" data-src="${src}" aria-label="View image ${i+1}">
+        <img src="${src}" alt="" />
+      </button>
+    `).join("");
+  }
+
+  function openModalById(id){
+    const p = items.find(x => x.id === id);
+
+    if (!p) return console.error("Product not found for id:", id);
+    if (!p.print || !p.print.stripeUrl) return console.error("Missing print/stripeUrl:", p);
+
+    const images = (p.images && p.images.length) ? p.images : [];
+    if (!images.length) return console.warn("No images for product:", p);
+
+    activeProduct = p;
+
+    mTitle.textContent = p.title || "";
+    mShort.textContent = p.short || "";
+    mSize.textContent = p.sizeLabel || "";
+    mFormat.textContent = p.formatLabel || "";
+
+    mDetails.innerHTML = (p.details || [])
+      .map(t => `<div class="bullet"><span class="dot">•</span><span>${t}</span></div>`)
+      .join("");
+
+    buyPrint.href = p.print.stripeUrl;
+    buyPrint.textContent = `Buy Print — ${p.print.price || ""}`;
+    mPrintMeta.textContent = `${p.sizeLabel || ""} · shipping at checkout`;
+
+    setMainImage(images[0], p.title);
+    renderThumbs(images);
+
+    backdrop.hidden = false;
+    lockScroll(true);
+  }
+
+  function closeModal(){
+    backdrop.hidden = true;
+    activeProduct = null;
+    lockScroll(false);
+  }
+
+  // Open modal: click anywhere on card
+  grid.addEventListener("click", (e) => {
+    const el = e.target.closest("[data-open]");
+    if (!el) return;
+    openModalById(el.getAttribute("data-open"));
+  });
+
+  // Keyboard open (Enter/Space on focused card)
+  grid.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    const card = e.target.closest("[data-open]");
+    if (!card) return;
+    e.preventDefault();
+    openModalById(card.getAttribute("data-open"));
+  });
+
+  // Close handlers
+  mClose.addEventListener("click", closeModal);
+  backdrop.addEventListener("click", (e) => { if (e.target === backdrop) closeModal(); });
+  document.addEventListener("keydown", (e) => { if (!backdrop.hidden && e.key === "Escape") closeModal(); });
+
+  // Thumb click
+thumbs.addEventListener("click", (e) => {
+  const btn = e.target.closest(".thumb[data-src]");
+  if (!btn || !activeProduct) return;
+
+  thumbs.querySelectorAll(".thumb").forEach(x => x.classList.remove("active"));
+  btn.classList.add("active");
+
+  setMainImage(btn.getAttribute("data-src"), activeProduct.title);
+});
+
+
+  // Zoom mouse move
+zoomWrap.addEventListener("mousemove", (e) => {
+  const wrapRect = zoomWrap.getBoundingClientRect();
+  const imgRect = mImg.getBoundingClientRect();
+
+  if (e.clientX < imgRect.left || e.clientX > imgRect.right || e.clientY < imgRect.top || e.clientY > imgRect.bottom) {
+    lens.style.display = "none";
+    return;
+  }
+  lens.style.display = "block";
+
+  const x = e.clientX - imgRect.left;
+  const y = e.clientY - imgRect.top;
+
+  const lensSize = 180;
+  lens.style.left = `${(e.clientX - wrapRect.left) - lensSize/2}px`;
+  lens.style.top  = `${(e.clientY - wrapRect.top)  - lensSize/2}px`;
+
+  const px = (x / imgRect.width) * 100;
+  const py = (y / imgRect.height) * 100;
+  lens.style.backgroundPosition = `${px}% ${py}%`;
+});
+
+zoomWrap.addEventListener("mouseleave", () => {
+  lens.style.display = "none";
+});
+
+
+</script>
+
+  
+</body>
+</html>
