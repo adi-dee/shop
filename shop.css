@@ -33,8 +33,90 @@ h3{margin:0;font-size:16px}
 .btn{border:1px solid var(--line);padding:10px 12px;border-radius:12px;color:var(--txt);background:rgba(255,255,255,.06)}
 .btn.primary{background:var(--txt);color:var(--bg);border-color:transparent}
 .tag{color:var(--muted);font-size:12px;border:1px solid var(--line);padding:6px 10px;border-radius:999px}
-.foot{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+
+
 .empty{color:var(--muted);padding:16px;border:1px dashed var(--line);border-radius:14px}
+
+.top {
+  margin-bottom: 48px; /* creates air below header */
+}
+
+.hero {
+    text-align: center;
+    margin:40px 0px;
+
+}
+
+
+.shop-footer {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 8px 14px;
+  background: rgba(18,18,18,.85);
+  backdrop-filter: blur(6px);
+  border-top: 1px solid rgba(255,255,255,.08);
+  font-size: 12px;
+  z-index: 100;
+    margin-top: 80px;
+  padding-top: 24px;
+}
+
+.shop-footer .footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: rgba(255,255,255,.6);
+}
+
+.shop-footer a {
+  color: rgba(255,255,255,.75);
+  text-decoration: none;
+}
+
+.shop-footer a:hover {
+  color: rgba(255,255,255,.95);
+  text-decoration: underline;
+}
+
+.shop-footer .vat {
+  white-space: nowrap;
+  opacity: .6;
+}
+
+.shop-footer {
+  font-size: 13px;
+  color: rgba(255,255,255,.6);
+}
+
+
+/* Mobile: stack neatly */
+@media (max-width: 720px) {
+  .shop-footer .footer-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 4px;
+  }
+
+
+.hero {
+    text-align: left;
+    margin:0px 0px;
+}
+
+.shop-footer {
+  margin-top: 0px;
+}
+
+.shop-footer span {
+    display:inline-flex
+}
+
+}
+
 
 /* ---------- MODAL (scoped + bulletproof) ---------- */
 #backdrop.modal-backdrop{
