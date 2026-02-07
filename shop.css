@@ -20,7 +20,7 @@ select,input{background:var(--card);border:1px solid var(--line);color:var(--txt
 input{flex:1;min-width:220px}
 .badge{border:1px solid var(--line);padding:8px 10px;border-radius:999px;color:var(--muted);font-size:13px}
 .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
-.card{grid-column:span 12;border:1px solid var(--line);background:var(--card);border-radius:18px;overflow:hidden}
+.card{cursor: pointer; grid-column:span 12;border:1px solid var(--line);background:var(--card);border-radius:18px;overflow:hidden}
 @media(min-width:720px){.card{grid-column:span 6}}
 @media(min-width:1000px){.card{grid-column:span 4}}
 .img{width:100%;aspect-ratio:4/3;object-fit:cover;background:#0f0f12}
@@ -50,7 +50,7 @@ h3{margin:0;font-size:16px}
 
 #backdrop[hidden]{ display:none !important; }
 
-#backdrop .modal{
+.modal{
   width: min(980px, 96vw);
   max-height: min(78vh, 900px);
   overflow: hidden;
@@ -82,15 +82,6 @@ h3{margin:0;font-size:16px}
 
 @media (min-width: 860px){
   #backdrop .modal-grid{ grid-template-columns: 1.1fr .9fr; }
-}
-
-#backdrop .modal-img{
-  width: 100%;
-  height: 100%;
-  max-height: 78vh;
-  object-fit: contain;
-  background: #0f0f12;
-  display:block;
 }
 
 #backdrop .modal-body{
@@ -217,6 +208,7 @@ h3{margin:0;font-size:16px}
 /* thumbs row always visible */
 .thumbs{
   flex: 0 0 auto;
+    height: 96px;          /* fixed gallery height */
   padding: 12px;
   overflow-x: auto;
   overflow-y: hidden;
@@ -338,8 +330,8 @@ h3{margin:0;font-size:16px}
 
 .modal-img{
   max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;     /* THIS is the key */
+   max-height: calc(86vh - 96px - 48px); 
+  object-fit: contain;
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,.10);
   background: rgba(255,255,255,.02);
@@ -379,4 +371,69 @@ h3{margin:0;font-size:16px}
   .modal-grid{ grid-template-columns: 1fr; height: 100%; }
   .modal-media{ border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); }
   .modal-media{ grid-template-rows: 1fr auto; }
+}
+
+@media (max-width: 520px) {
+  .modal-media {
+    min-height: unset;
+  }
+
+  .zoom-wrap {
+    padding: 12px;
+  }
+
+  .modal-img {
+    max-height: 38vh;   /* THIS is the key */
+    width: 100%;
+  }
+
+  .thumbs {
+    height: 72px;
+    padding: 8px;
+  }
+
+  .thumb img {
+    width: 56px;
+    height: 56px;
+  }
+
+  .backdrop{
+    padding: 0;              /* no margins around modal */
+    place-items: stretch;    /* fill the screen */
+  }
+
+  .modal{
+    width: 100vw;
+    height: 100dvh;          /* better than vh on mobile */
+    max-height: none;
+    border-radius: 0;        /* full screen */
+  }
+
+  .modal-grid{
+    grid-template-columns: 1fr;          /* stack */
+    grid-template-rows: auto 1fr;        /* media top, info scrolls */
+    height: 100%;
+  }
+
+  .modal-media{
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    grid-template-rows: 1fr auto;        /* image + thumbs */
+  }
+
+  .modal-info{
+    max-height: none;
+    overflow: auto;          /* scroll the details */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .modal-img{
+    max-height: 45dvh;       /* keep image from taking whole screen */
+  }
+
+  .modal-close{
+    top: 10px;
+    right: 10px;
+    z-index: 5;
+  }
 }

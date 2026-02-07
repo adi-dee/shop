@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Shop</title>
   <link rel="stylesheet" href="./shop.css" />
+  <link rel="icon" type="image/x-icon" href="./img/favicon3.png">
 </head>
 <body>
   <div class="wrap">
     <header class="top">
-      <a class="brand" href="../">Adi</a>
+      <a class="brand" href="http://adi-dee.github.io/" target="_blank" >☼ Didi Sun Art</a>
       <nav class="nav">
-        <a href="../">Home</a>
-        <a class="active" href="./">Shop</a>
+        <a href="http://adi-dee.github.io/" target="_blank" >Home</a>
       </nav>
     </header>
 
@@ -21,7 +21,7 @@
       <p class="sub">Preview each piece, then choose digital or print. Secure checkout via Stripe.</p>
 
       <div class="notice">
-        <div><strong>Shipping (prints):</strong> Germany €3 · EU €6 · USA/International €10</div>
+        <div><strong>Shipping (prints):</strong> Germany €4.5 · EU €6 · USA/International €10</div>
         <div class="muted">Other countries: DM me on Instagram.</div>
         <div class="muted">Digital downloads: no shipping.</div>
       </div>
@@ -30,7 +30,7 @@
     <main id="grid" class="grid" aria-live="polite"></main>
 
     <footer class="foot">
-      <div>„Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.“</div>
+      <div>Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.</div>
     </footer>
   </div>
 
@@ -131,13 +131,23 @@
   lens.style.backgroundImage = `url('${src}')`;
 }
 
-  function renderThumbs(images){
-    thumbs.innerHTML = images.map((src, i) => `
-      <button class="thumb ${i===0 ? "active" : ""}" type="button" data-src="${src}" aria-label="View image ${i+1}">
-        <img src="${src}" alt="" />
-      </button>
-    `).join("");
+function renderThumbs(images){
+  // If only one image → hide gallery
+  if (!images || images.length <= 1) {
+    thumbs.innerHTML = "";
+    thumbs.style.display = "none";
+    return;
   }
+
+  // Otherwise show gallery
+  thumbs.style.display = "flex";
+  thumbs.innerHTML = images.map((src, i) => `
+    <button class="thumb ${i===0 ? "active" : ""}" type="button" data-src="${src}">
+      <img src="${src}" alt="" />
+    </button>
+  `).join("");
+}
+
 
   function openModalById(id){
     const p = items.find(x => x.id === id);

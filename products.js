@@ -21,7 +21,7 @@ window.PRODUCTS = [
     ],
     print: {
       price: "€25",
-      stripeUrl: "https://buy.stripe.com/REPLACE_ME_BENGAL_SET"
+      stripeUrl: "https://buy.stripe.com/aFa6oJ8XTbF51Kb7cD14408"
     },
     // optional if you want later:
     // digital: { price: "€12", stripeUrl: "..." }
@@ -40,7 +40,7 @@ window.PRODUCTS = [
     images: ["./img/bath-297x294cm.jpg"],
     print: {
       price: "€20",
-      stripeUrl: "https://buy.stripe.com/REPLACE_ME_BATH"
+      stripeUrl: "https://buy.stripe.com/6oU00l2zvaB1dsT9kL14409"
     }
   },
 
@@ -57,7 +57,7 @@ window.PRODUCTS = [
     images: ["./img/berlin_view-210x297mm.jpg"],
     print: {
       price: "€15",
-      stripeUrl: "https://buy.stripe.com/REPLACE_ME_BERLIN"
+      stripeUrl: "https://buy.stripe.com/00w28t8XT10rewX7cD14406"
     }
   },
 
@@ -74,7 +74,7 @@ window.PRODUCTS = [
     images: ["./img/space_warrier-210x297mm.jpg"],
     print: {
       price: "€15",
-      stripeUrl: "https://buy.stripe.com/REPLACE_ME_SPACE"
+      stripeUrl: "https://buy.stripe.com/5kQ8wR8XTcJ9bkLbsT14405"
     }
   },
 
@@ -91,7 +91,7 @@ window.PRODUCTS = [
     images: ["./img/sri-lankian-297x210mm.jpg"],
     print: {
       price: "€15",
-      stripeUrl: "https://buy.stripe.com/REPLACE_ME_SRI"
+      stripeUrl: "https://buy.stripe.com/cNi7sN5LH10r9cD68z14404"
     }
   },
 
@@ -108,7 +108,7 @@ window.PRODUCTS = [
     images: ["./img/dark_alice-29x42cm.jpg"],
     print: {
       price: "€20",
-      stripeUrl: "https://buy.stripe.com/REPLACE_ME_ALICE"
+      stripeUrl: "https://buy.stripe.com/6oUcN7de9eRhagH7cD14403"
     }
   },
 
@@ -142,7 +142,7 @@ window.PRODUCTS = [
     images: ["./img/shiva_dance-3000x4048px.jpg"],
     print: {
       price: "€20",
-      stripeUrl: "https://buy.stripe.com/REPLACE_ME_SHIVA"
+      stripeUrl: "https://buy.stripe.com/bJeaEZeidbF50G72Wn14402"
     }
   },
 
