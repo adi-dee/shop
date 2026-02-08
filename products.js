@@ -7,8 +7,8 @@ window.PRODUCTS = [
     id: "bengal-remote-working",
     title: "Bengal Remote Working (Diptych)",
     short: "Set of 2 prints (sold together).",
-    sizeLabel: "2× (14 × 17 cm) — set",
-    formatLabel: "Small diptych set",
+    sizeLabel: "2× ( 28 × 35 cm) — set",
+    formatLabel: "Medium diptych set",
     details: [
       "Two separate prints (unframed)",
       "Ships flat in protective packaging",
@@ -17,7 +17,8 @@ window.PRODUCTS = [
     images: [
       "./img/bengal-both_toghter.jpg",
       "./img/bengal_1-14x17cm.jpg",
-      "./img/bengal_2-14x17cm.jpg"
+      "./img/bengal_2-14x17cm.jpg",
+      "./img/bengal_2.png"
     ],
     print: {
       price: "€25",
@@ -37,7 +38,9 @@ window.PRODUCTS = [
       "Fine art print (unframed)",
       "Ships flat in protective packaging"
     ],
-    images: ["./img/bath-297x294cm.jpg"],
+    images: ["./img/bath-297x294cm.jpg",
+      "./img/bath-2.png"
+    ],
     print: {
       price: "€20",
       stripeUrl: "https://buy.stripe.com/6oU00l2zvaB1dsT9kL14409"
@@ -54,7 +57,9 @@ window.PRODUCTS = [
       "Fine art print (unframed)",
       "Ships flat in protective packaging"
     ],
-    images: ["./img/berlin_view-210x297mm.jpg"],
+    images: ["./img/berlin_view-210x297mm.jpg",
+      "./img/berlin_view-2.png"
+    ],
     print: {
       price: "€15",
       stripeUrl: "https://buy.stripe.com/00w28t8XT10rewX7cD14406"
@@ -71,7 +76,9 @@ window.PRODUCTS = [
       "Fine art print (unframed)",
       "Ships flat in protective packaging"
     ],
-    images: ["./img/space_warrier-210x297mm.jpg"],
+    images: ["./img/space_warrier-210x297mm.jpg",
+      "./img/space_warrier-2.png"
+    ],
     print: {
       price: "€15",
       stripeUrl: "https://buy.stripe.com/5kQ8wR8XTcJ9bkLbsT14405"
@@ -88,7 +95,9 @@ window.PRODUCTS = [
       "Fine art print (unframed)",
       "Ships flat in protective packaging"
     ],
-    images: ["./img/sri-lankian-297x210mm.jpg"],
+    images: ["./img/sri-lankian-297x210mm.jpg",
+      "./img/sri-lankian-2.png"
+    ],
     print: {
       price: "€15",
       stripeUrl: "https://buy.stripe.com/cNi7sN5LH10r9cD68z14404"
@@ -105,7 +114,9 @@ window.PRODUCTS = [
       "Fine art print (unframed)",
       "Ships flat in protective packaging"
     ],
-    images: ["./img/dark_alice-29x42cm.jpg"],
+    images: ["./img/dark_alice-29x42cm.jpg", 
+      "./img/dark_alice-2.png"
+    ],
     print: {
       price: "€20",
       stripeUrl: "https://buy.stripe.com/6oUcN7de9eRhagH7cD14403"
@@ -122,7 +133,9 @@ window.PRODUCTS = [
       "Fine art print (unframed)",
       "Ships flat in protective packaging"
     ],
-    images: ["./img/patagonian_cowgirl_framed-42x29cm.png"],
+    images: ["./img/patagonian_cowgirl_framed-42x29cm.png",
+      "./img/patagonian_cowgirl_framed-2.png"
+    ],
     print: {
       price: "€20",
       stripeUrl: "https://buy.stripe.com/REPLACE_ME_COWGIRL"
@@ -139,7 +152,9 @@ window.PRODUCTS = [
       "Fine art print (unframed)",
       "Ships flat in protective packaging"
     ],
-    images: ["./img/shiva_dance-3000x4048px.jpg"],
+    images: ["./img/shiva_dance-3000x4048px.jpg",
+      "./img/shiva_dance-2.png"
+    ],
     print: {
       price: "€20",
       stripeUrl: "https://buy.stripe.com/bJeaEZeidbF50G72Wn14402"
@@ -156,7 +171,9 @@ window.PRODUCTS = [
       "Fine art print (unframed)",
       "Ships flat in protective packaging"
     ],
-    images: ["./img/japanese_cafe-1080-1350px.jpg"],
+    images: ["./img/japanese_cafe-1080-1350px.jpg",
+      "./img/japanese_cafe-2.png"
+    ],
     print: {
       price: "€15",
       stripeUrl: "https://buy.stripe.com/REPLACE_ME_CAFE"
