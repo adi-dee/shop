@@ -100,6 +100,7 @@ h3{margin:0;font-size:16px}
     flex-direction: column;
     text-align: center;
     gap: 4px;
+    
   }
 
 
@@ -110,6 +111,7 @@ h3{margin:0;font-size:16px}
 
 .shop-footer {
   margin-top: 0px;
+  z-index: 1;
 }
 
 .shop-footer span {
@@ -144,18 +146,42 @@ h3{margin:0;font-size:16px}
   box-shadow: 0 20px 70px rgba(0,0,0,.6);
 }
 
-#backdrop .modal-close{
+#backdrop .modal-close {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 2;
-  border: 1px solid rgba(255,255,255,.14);
-  background: rgba(255,255,255,.08);
+  top: 14px;
+  right: 14px;
+  z-index: 50;
+
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+
+  display: grid;
+  place-items: center;
+
+  font-size: 22px;
+  line-height: 1;
+
+  background: rgba(0,0,0,.6);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,.25);
   color: #fff;
-  border-radius: 12px;
-  padding: 8px 10px;
+
   cursor: pointer;
 }
+
+#backdrop .modal-close:hover {
+  background: rgba(0,0,0,.8);
+}
+
+@media (max-width: 520px) {
+  #backdrop .modal-close {
+    width: 44px;
+    height: 44px;
+    font-size: 24px;
+  }
+}
+
 
 #backdrop .modal-grid{
   display: grid;
@@ -519,4 +545,50 @@ h3{margin:0;font-size:16px}
     right: 10px;
     z-index: 5;
   }
+ 
 }
+
+
+.modal-ig {
+  position: fixed;
+  bottom: 14px;
+  right: 64px;
+  z-index: 50;
+
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+
+  display: grid;
+  place-items: center;
+
+  font-size: 16px;
+  letter-spacing: .02em;
+
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,.2);
+  color: rgba(255,255,255,.9);
+
+  text-decoration: none;
+}
+
+.modal-ig:hover {
+  background: rgba(0,0,0,.75);
+}
+
+.ig-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+@media (max-width: 720px) {
+
+
+   .modal-ig {
+    right: 10px;
+    color: none;
+    z-index: 5;
+  }
+    }
