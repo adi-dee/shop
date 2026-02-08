@@ -1,5 +1,5 @@
 :root{
-  --bg:#111113; --card:#121214; --txt:#f2f2f4; --muted:#b7b7c2; --line:#24242b;
+  --bg:#7ebca1; --card:#5d9d81; --txt:#f2f2f4; --muted:#e4e4ef; --line:#2a9767;
 }
 *{box-sizing:border-box}
 html,body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--txt)}
@@ -51,6 +51,7 @@ h3{margin:0;font-size:16px}
   font-size: 34px;
   font-weight: 600;
   letter-spacing: -0.02em;
+  color: rgb(254 51 122);
 }
 
 .hero .sub {
@@ -65,13 +66,14 @@ h3{margin:0;font-size:16px}
   left: 0;
   width: 100%;
   padding: 8px 14px;
-  background: rgba(18,18,18,.85);
+background: #5D9D81;
+background: linear-gradient(0deg,rgba(93, 157, 129, 1) 0%, rgba(87, 199, 133, 0) 100%);
   backdrop-filter: blur(6px);
-  border-top: 1px solid rgba(255,255,255,.08);
   font-size: 12px;
   z-index: 100;
     margin-top: 80px;
   padding-top: 24px;
+  border-radius:  0 0 14px 14px;
 }
 
 .shop-footer .footer-inner {
@@ -149,8 +151,8 @@ h3{margin:0;font-size:16px}
   width: min(980px, 96vw);
   max-height: min(78vh, 900px);
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,.10);
-  background: rgba(18,18,20,.98);
+  /* border: 1px solid rgba(255,255,255,.10); */
+  background: rgba(21, 101, 81, 0.98);
   border-radius: 20px;
   position: relative;
   box-shadow: 0 20px 70px rgba(0,0,0,.6);
@@ -399,6 +401,36 @@ h3{margin:0;font-size:16px}
   font-weight: 600;
 }
 
+:root{
+  --accent: rgb(254 51 122);
+}
+
+.card {
+  transition: border-color .2s ease;
+}
+
+.btn {
+  transition: border-color .2s ease, color .2s ease, background .2s ease;
+}
+
+.card:hover {
+  border-color: var(--accent);
+}
+
+.card:hover .btn {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.card:focus .btn {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+
+
+
+
 .btn-primary{
   background: rgba(255,255,255,.92);
   color: #111;
@@ -575,7 +607,7 @@ h3{margin:0;font-size:16px}
   font-size: 16px;
   letter-spacing: .02em;
 
-  background: rgba(0,0,0,.45);
+  background: rgba(208, 255, 231, 0.45);
   backdrop-filter: blur(6px);
   border: 1px solid rgba(255,255,255,.2);
   color: rgba(255,255,255,.9);
@@ -584,7 +616,7 @@ h3{margin:0;font-size:16px}
 }
 
 .modal-ig:hover {
-  background: rgba(0,0,0,.75);
+  background: #fd337b;
 }
 
 .ig-icon {
