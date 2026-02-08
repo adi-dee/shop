@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@600;700&display=swap');
+
+
 :root{
   --bg:#7ebca1; --card:#5d9d81; --txt:#f2f2f4; --muted:#e4e4ef; --line:#2a9767;
 }
 *{box-sizing:border-box}
-html,body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--txt)}
+html,body{margin:0;font-family: 'Inter', sans-serif; background:var(--bg);color:var(--txt)}
 a{color:var(--txt);text-decoration:none}
 a:hover{text-decoration:underline}
 .wrap{max-width:1100px;margin:0 auto;padding:22px}
@@ -36,6 +39,7 @@ h3{margin:0;font-size:16px}
 .tag{color:var(--muted);font-size:12px;border:1px solid var(--line);padding:6px 10px;border-radius:999px}
 
 
+
 .empty{color:var(--muted);padding:16px;border:1px dashed var(--line);border-radius:14px}
 
 .top {
@@ -54,11 +58,20 @@ h3{margin:0;font-size:16px}
   color: rgb(254 51 122);
 }
 
+#backdrop .btn:hover {
+  background: rgb(254 51 122);
+border-color:var(--accent);
+}
+
 .hero .sub {
   max-width: 520px;
   margin: 12px auto 0;
   color: rgba(255,255,255,.75);
 }
+
+  h1, h2, h3, .btn {
+    font-family: 'Playfair Display', serif;
+  }
 
 .shop-footer {
   position: relative;
